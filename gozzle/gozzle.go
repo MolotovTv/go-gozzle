@@ -12,6 +12,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"sync"
+	"time"
 )
 
 // Constants
@@ -40,7 +41,9 @@ type Configuration struct {
 // NewGozzle creates a new Gozzle object
 func NewGozzle() Gozzle {
 	return &gozzle{
-		client: &http.Client{},
+		client: &http.Client{
+			Timeout: 5 * time.Second,
+		},
 	}
 }
 
