@@ -6,7 +6,6 @@ package gozzle
 
 import (
 	"bytes"
-	"context"
 	"encoding/json"
 	"encoding/xml"
 	"io"
@@ -123,10 +122,6 @@ func (g gozzle) execRequest(req Request) Response {
 
 	// Add headers
 	headers(req, httpReq)
-
-	ctx, cancel := context.WithTimeout(context.Background(), g.client.Timeout)
-	defer cancel()
-	httpReq = httpReq.WithContext(ctx)
 
 	// Send request
 	httpResp, e := g.client.Do(httpReq)
