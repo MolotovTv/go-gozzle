@@ -40,9 +40,13 @@ type Configuration struct {
 
 // NewGozzle creates a new Gozzle object
 func NewGozzle() Gozzle {
+	return NewGozzleWithTimeout(5 * time.Second)
+}
+
+func NewGozzleWithTimeout(timeout time.Duration) Gozzle {
 	return &gozzle{
 		client: &http.Client{
-			Timeout: 5 * time.Second,
+			Timeout: timeout,
 		},
 	}
 }
